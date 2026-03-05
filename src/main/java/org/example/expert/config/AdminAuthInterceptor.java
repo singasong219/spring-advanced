@@ -2,7 +2,7 @@ package org.example.expert.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.expert.domain.common.exception.InvalidRequestException;
+import org.example.expert.domain.common.exception.AuthException;
 import org.example.expert.domain.user.enums.UserRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
         String userRole = (String) request.getAttribute("userRole");
 
         if (!UserRole.ADMIN.name().equals(userRole)) {
-            throw new InvalidRequestException("관리자 권한이 없습니다.");
+            throw new AuthException("관리자 권한이 없습니다.");
 
         }
 
